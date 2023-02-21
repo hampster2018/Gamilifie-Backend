@@ -20,13 +20,17 @@ Users = mongo.db.users
 
 
 @auth_bp.route("/signup", methods=["GET"],)
-def signup(username, password):
+def signup():
 
-    existing_user = Users.find_one(username)
+    username = request.args['username']
+    password = request.args['password']
+
+    existing_user = Users.find_one({'username': username})
     print("Existing Users:", existing_user)
     if existing_user is None:
         user = User(username, generate_password_hash(password))
-        result = user.createMongoUser(Users)
+        user.createMongoUser(Users)
+        return jsonify({'username': user.username}), 201
     
     return 'Username already exist', 401
 

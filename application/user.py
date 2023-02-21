@@ -7,7 +7,7 @@ class User (UserMixin):
 
     def __init__ (self, username, password, is_active = True, id = "Temp",):
         self.id = id
-        self.username = username,
+        self.username = username
         self.password = generate_password_hash(password, method="sha256")
         self.active = is_active
 
