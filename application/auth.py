@@ -19,7 +19,7 @@ auth_bp = Blueprint(
 Users = mongo.db.users
 
 
-@auth_bp.route("/signup", methods=["GET"], )
+@auth_bp.route("/signup", methods=["GET"],)
 def signup(username, password):
 
     existing_user = Users.find_one(username)
